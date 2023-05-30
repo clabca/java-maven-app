@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar Repositorio') {
             steps {
-                git 'https://github.com/clabca/java-maven-app.git'
+             //   git 'https://github.com/clabca/java-maven-app.git'
             }
         }
 
@@ -19,6 +19,28 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        
+
+
+        stage('SonarQube analysis') {
+            environment {
+              SCANNER_HOME = tool 'SonarQube Conexion'
+            }
+            steps {
+              withSonarQubeEnv(credentialsId: 'sonarq22', installationName: 'SonarQube') {
+              sh '''$SCANNER_HOME/bin/sonar-scanner \
+                -Dsonar.projectKey=projectKey \
+                -Dsonar.projectName=projectName \
+                -Dsonar.sources=src/ \
+                -Dsonar.java.binaries=target/classes/ \
+                -Dsonar.exclusions=src/test/java/****/*.java \
+                -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+               }
+            }
+        }
+
+
+        
 
         stage('Empaquetar') {
             steps {
