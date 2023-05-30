@@ -7,21 +7,16 @@ pipeline {
              //   git 'https://github.com/clabca/java-maven-app.git'
             }
         }
-
         stage('Construir') {
             steps {
                 sh 'mvn clean install'
             }
         }
-
         stage('Pruebas') {
             steps {
                 sh 'mvn test'
             }
         }
-        
-
-
         stage('SonarQube analysis') {
             environment {
               SCANNER_HOME = tool 'SonarQube Conexion'
@@ -38,16 +33,11 @@ pipeline {
                }
             }
         }
-
-
-        
-
         stage('Empaquetar') {
             steps {
                 sh 'mvn package'
             }
         }
-
         stage('Desplegar') {
             when {
                 expression {
