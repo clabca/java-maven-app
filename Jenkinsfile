@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar Repositorio') {
             steps {
-             //   git 'https://github.com/clabca/java-maven-app.git'
+                git 'https://github.com/clabca/java-maven-app.git'
             }
         }
         stage('Construir') {
