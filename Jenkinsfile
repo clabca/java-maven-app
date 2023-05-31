@@ -67,18 +67,13 @@ pipeline {
             }
             post {
                 always {
-                    slackSend channel: '#notificajenkins', color: 'purple', message: 'Mensaje MOD3 LEC7 Slack'
+                    slackSend channel: '#notificajenkins', 
+                              color: 'purple', 
+                              message: 'Mensaje MOD3 LEC7 Slack'
                 }
             }
-            
-            
-            
-            
+    
        }
-  
-   
-        
-        
-        
+      
     }
 }
