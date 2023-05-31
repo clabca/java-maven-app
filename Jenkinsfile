@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('SonarQube analysis') {
+        stage('Analisis SonarQube') {
             environment {
               SCANNER_HOME = tool 'ConexionSonarQube'
             }
