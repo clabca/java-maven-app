@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar Repositorio') {
+        stage('Clonar Repositorio 2') {
             steps {
                 git 'https://github.com/clabca/java-maven-app.git'
             }
